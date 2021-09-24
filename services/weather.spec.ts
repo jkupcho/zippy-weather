@@ -10,7 +10,7 @@ describe("getForecastForZip", () => {
       expect(transformed.location).toBeDefined();
       expect(transformed.current).toBeDefined();
 
-      expect(transformed.forecast.forecastday.length).toBe(3);
+      expect(transformed.forecast.forecastday.length).toBe(7);
     });
   });
 });
