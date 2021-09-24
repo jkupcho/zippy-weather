@@ -1,10 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { Text } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from "react-native";
+import { select } from "./favoritesSlice";
+
 import { RootState } from "../../app/store";
 
 export function Favorite({ zip }: { zip: string }) {
-  return <Text>{zip}</Text>;
+  const dispatch = useDispatch();
+
+  function handleOnPress() {
+    dispatch(select(zip));
+  }
+  return <Button onPress={handleOnPress} title={zip} />;
 }
 
 export function Favorites() {

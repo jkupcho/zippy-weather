@@ -20,8 +20,11 @@ export const favoritesSlice = createSlice({
       }
       state.selected = action.payload;
     },
+    select: (state: FavoritesState, action: PayloadAction<string>) => {
+      state.selected = action.payload;
+    },
   },
 });
 
-export const { addFavorite } = favoritesSlice.actions;
+export const { addFavorite, select } = favoritesSlice.actions;
 export default favoritesSlice.reducer;
