@@ -19,6 +19,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
     "react-native-web": "0.14.6",
     "react-redux": "^7.2.5",
+    "redux-persist": "^6.0.0",
     "underscore": "^1.13.1",
     "yup": "^0.32.9"
   },
