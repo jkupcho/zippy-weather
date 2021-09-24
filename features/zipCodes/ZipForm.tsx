@@ -1,9 +1,10 @@
 import React from "react";
 import { Formik, useField } from "formik";
-import { Button, Text, TextInput, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
-import { addFavorite } from "./favoritesSlice";
+import { addFavorite } from "./zipCodesSlice";
+import { Dialog, Portal, TextInput, Button } from "react-native-paper";
 
 const zipCodeValidationSchema = yup.object().shape({
   zipCode: yup.string().required().length(5),
@@ -27,30 +28,45 @@ export function FormikTextInput({
 }) {
   const [_, meta] = useField(name);
   return (
-    <>
-      <TextInput
-        onBlur={onBlur}
-        onChangeText={onChangeText}
-        value={value}
-        placeholder={placeholder}
-      />
-      {meta.touched && meta.error ? (
-        <Text key={meta.error}>{meta.error}</Text>
-      ) : null}
-    </>
+    <TextInput
+      onBlur={onBlur}
+      onChangeText={onChangeText}
+      value={value}
+      placeholder={placeholder}
+      error={meta.error !== undefined}
+    />
   );
 }
 
-export function ZipForm() {
+export function ZipFormDialog({
+  visible,
+  hideDialog,
+}: {
+  visible: boolean;
+  hideDialog: () => void;
+}) {
+  return (
+    <Portal>
+      <Dialog visible={visible} onDismiss={hideDialog}>
+        <Dialog.Title>Enter Zip Code</Dialog.Title>
+        <Dialog.Content>
+          <ZipForm hideDialog={hideDialog} />
+        </Dialog.Content>
+      </Dialog>
+    </Portal>
+  );
+}
+
+export function ZipForm({ hideDialog }: { hideDialog: () => void }) {
   const dispatch = useDispatch();
 
   function handleOnSubmit(values: ZipFormShape) {
     dispatch(addFavorite(values.zipCode));
+    hideDialog();
   }
 
   return (
-    <>
-      <Text>Enter a Zip Code</Text>
+    <View>
       <Formik
         initialValues={{ zipCode: "" }}
         validationSchema={zipCodeValidationSchema}
@@ -68,10 +84,12 @@ export function ZipForm() {
             />
             {/* this handleSubmit as any is a hack to workaround a function signature difference for React Native
                 https://github.com/formium/formik/issues/376/#issuecomment-466964585 */}
-            <Button title="Add Zip" onPress={handleSubmit as any} />
+            <Button onPress={handleSubmit as any} mode="contained">
+              Add Zip
+            </Button>
           </View>
         )}
       </Formik>
-    </>
+    </View>
   );
 }

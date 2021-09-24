@@ -5,7 +5,7 @@ export interface ForecastApiResponse {
 }
 
 export interface Forecast {
-  forecastday: DailySummary[];
+  forecastday: DateForecast[];
 }
 
 export interface Location {
@@ -17,6 +17,19 @@ export interface Location {
 export interface CurrentForecast {
   temp_f: number;
   temp_c: number;
+  condition: Condition;
 }
 
-export interface DailySummary {}
+export interface Condition {
+  text: string;
+}
+
+export interface DateForecast {
+  date: string;
+  day: DayForecast;
+}
+
+export interface DayForecast {
+  maxtemp_f: number;
+  mintemp_f: number;
+}

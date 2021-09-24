@@ -1,6 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { SafeAreaView, StyleSheet } from "react-native";
+import { Provider as PaperProvider } from "react-native-paper";
+
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import { Weather } from "./Weather";
@@ -12,10 +14,12 @@ export default function App() {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
-        <View style={styles.container}>
-          <Weather />
-          <StatusBar style="auto" />
-        </View>
+        <PaperProvider>
+          <SafeAreaView style={styles.container}>
+            <Weather />
+            <StatusBar style="auto" />
+          </SafeAreaView>
+        </PaperProvider>
       </PersistGate>
     </Provider>
   );
@@ -24,8 +28,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
   },
 });

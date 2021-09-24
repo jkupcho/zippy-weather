@@ -8,7 +8,7 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import rootReducer from "./reducers";
 import { weatherApi } from "../services/weather";
@@ -16,8 +16,8 @@ import { weatherApi } from "../services/weather";
 const persistConfig = {
   key: "root",
   version: 1,
-  storage,
   blacklist: [weatherApi.reducerPath],
+  storage: AsyncStorage,
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

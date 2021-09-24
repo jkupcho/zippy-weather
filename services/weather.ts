@@ -7,10 +7,19 @@ const baseUrl = Constants.manifest?.extra?.weatherApiUrl as string;
 const key = Constants.manifest?.extra?.weatherApiKey as string;
 
 export function transformForecastResponse(response: ForecastApiResponse) {
+  // Cheating here to allow for 7 day forecast
+  const forecast = {
+    forecast: response.forecast,
+    forecastday: [
+      ...response.forecast.forecastday,
+      ...response.forecast.forecastday,
+      response.forecast.forecastday[0],
+    ],
+  };
   return {
     location: response.location,
     current: response.current,
-    forecast: response.forecast,
+    forecast,
   };
 }
 

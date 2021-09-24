@@ -10,8 +10,8 @@ const initialState: FavoritesState = {
   favorites: [],
 };
 
-export const favoritesSlice = createSlice({
-  name: "favorites",
+export const zipCodesSlice = createSlice({
+  name: "zipCodes",
   initialState,
   reducers: {
     addFavorite: (state: FavoritesState, action: PayloadAction<string>) => {
@@ -26,5 +26,5 @@ export const favoritesSlice = createSlice({
   },
 });
 
-export const { addFavorite, select } = favoritesSlice.actions;
-export default favoritesSlice.reducer;
+export const { addFavorite, select } = zipCodesSlice.actions;
+export default zipCodesSlice.reducer;
