@@ -1,0 +1,48 @@
+{
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.6.1",
+    "expo": "~41.0.1",
+    "expo-constants": "^11.0.1",
+    "expo-status-bar": "~1.0.4",
+    "formik": "^2.2.9",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
+    "react-native-web": "0.14.6",
+    "react-redux": "^7.2.5",
+    "underscore": "^1.13.1",
+    "yup": "^0.32.9"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@types/enzyme": "^3.10.8",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/jest": "^26.0.23",
+    "@types/react": "~16.9.35",
+    "@types/react-native": "~0.63.2",
+    "@types/underscore": "^1.11.3",
+    "dotenv": "^10.0.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "jest-expo": "^41.0.0",
+    "jest-expo-enzyme": "^1.1.2",
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.3"
+  },
+  "private": true,
+  "jest": {
+    "preset": "jest-expo-enzyme",
+    "setupFiles": [
+        "./setup.ts"
+    ]
+  }
+}
